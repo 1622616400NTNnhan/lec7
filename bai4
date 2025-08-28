@@ -1,0 +1,56 @@
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ToDoList {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> tasks = new ArrayList<>();
+        int choice;
+
+        do {
+            System.out.println("\n----- Quản lý công việc -----");
+            System.out.println("1. Thêm công việc");
+            System.out.println("2. Xem danh sách công việc");
+            System.out.println("3. Xóa công việc theo vị trí");
+            System.out.println("0. Thoát");
+            System.out.print("Chọn: ");
+            choice = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Nhập công việc: ");
+                    String task = sc.nextLine();
+                    tasks.add(task);
+                    System.out.println("Đã thêm công việc!");
+                    break;
+                case 2:
+                    if (tasks.isEmpty()) {
+                        System.out.println("Danh sách trống.");
+                    } else {
+                        System.out.println("Danh sách công việc:");
+                        for (int i = 0; i < tasks.size(); i++) {
+                            System.out.println(i + ". " + tasks.get(i));
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.print("Nhập vị trí cần xóa: ");
+                    int index = sc.nextInt();
+                    if (index >= 0 && index < tasks.size()) {
+                        tasks.remove(index);
+                        System.out.println("Đã xóa công việc!");
+                    } else {
+                        System.out.println("Vị trí không hợp lệ!");
+                    }
+                    break;
+                case 0:
+                    System.out.println("Thoát chương trình.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ.");
+            }
+        } while (choice != 0);
+    }
+}
